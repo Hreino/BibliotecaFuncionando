@@ -1,0 +1,146 @@
+﻿@model Biblioteca.Models.Devoluciones
+
+@{
+    ViewBag.Title = "Nueva Devoluión";
+}
+
+<h2 class="colortitulo">Datos de la devolución</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">ID Prestamo </label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                @Html.DropDownList("Id_prestamo", null, htmlAttributes: new { @class = "form-control", @id="idReferencia" })
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Ver Listado de prestamos</button>
+            </div>
+            @*Iconos dentro del input*@
+            @Html.ValidationMessageFor(model => model.Id_prestamo, "", new { @class = "text-danger" })
+        </div>
+
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @{ IEnumerable<Biblioteca.Models.Prestamo> prestamos = new List<Biblioteca.Models.Prestamo>();
+                        prestamos = ViewBag.ListadoDePrestamos;
+                        }
+
+                    @foreach(var item in prestamos)
+                    {
+                        <table class="table table-hover  table-bordered" >
+                            <thead>
+                                <tr>
+                                    <th> ID Prestamo</th>
+                                    <th> Nombre del Cliente</th>
+                                    <th> Seleccionar</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="text-center">
+                                    <td>@item.Id_prestamo</td>
+                                    <td>@item.Cliente.Nombre @item.Cliente.Apellido</td>
+                                    <td>
+                                    <button 
+                                     onclick="Pasarid(@item.Id_prestamo);"
+                                     type="button" 
+                                     class="btn btn-warning glyphicon glyphicon-check"
+                                    data-dismiss="modal"
+                                     >  </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    }
+
+
+                    <script>
+                        $(document).ready(function () {
+
+                        });
+
+
+                        function Pasarid(id) {
+                            $("#idReferencia").val(id);
+                        }
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">Fecha de devolución </label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.EditorFor(model => model.FechaDevolucion, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @*Iconos dentro del input*@
+
+            @Html.ValidationMessageFor(model => model.FechaDevolucion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">Observaciones</label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @*Iconos dentro del input*@
+
+            @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group ">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar Devolución" class="btn btn-success " />
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@*Botón de Regresar*@
+<div>
+
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+</div>
+@*Botón de Regresar*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

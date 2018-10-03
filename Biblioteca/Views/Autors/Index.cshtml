@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Biblioteca.Models.Autor>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br /><br />
+<h2 class="colortitulo">Listado de Autores</h2>
+@*<h3 class="text-danger">@ViewBag.ErrorEliminar</h3>*@
+
+
+
+@*Estilo del Botón Agregar Nuevo*@
+<button class="btn-lg btn-primary" title="Agregar nuevo autor">
+    @Html.ActionLink("  ", "Create", null, new { @class = "fas fa-user-tie" })
+</button>
+@*Estilo del Botón Agregar Nuevo*@
+
+
+
+@*Animacion del Textbox*@
+<script>
+    $(document).ready(function () {
+
+        $("#a").click(function () {
+            $("#y").toggle();
+        })
+    });
+</script>
+@*Animacion del Textbox*@
+
+
+
+@*Comienzo de busqueda*@
+@using (Ajax.BeginForm("busq", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "busqautor"
+}))
+{
+    <br />
+    <div class="row">
+
+        <div class="col-md-12">
+            <input style="width:150px; height:35px; border-style:groove;background-color:none" type="text" id="y" name="p" placeholder="Nombre del Autor" />
+            <button Class="btn btn-lg btn-primary fas fa-search " type="submit" id="a" ;" name="" title="Buscar Autor"></button>
+        </div>
+    </div>
+}
+@*fin de busqueda*@
+
+
+
+<hr />
+<div id="busqautor">
+
+    @*Clases para la tabla*@
+    <table class="table jumbotron table-bordered text-center table-hover">
+        @*Clases para la tabla*@
+
+
+        <tr class="info ">
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Pais)
+            </th>
+            <th class="text-center">
+                Acciones
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pais)
+                </td>
+                <td>
+                    @*Estilo de los Botones*@
+                    <button class="btn-lg btn-info" style="color:white" title="Editar Autor">
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id_autor }, new { @class = "far fa-edit" })
+                    </button>
+                    <button class="btn-lg btn-success" title="Información del Autor">
+                        @Html.ActionLink("   ", "Details", new { id = item.Id_autor }, new { @class = "fas fa-info-circle" })
+                    </button>
+                    <button class="btn-lg" style="background-color:rgba(255, 106, 0, 0.75);" title="Eliminar Autor">
+                        @Html.ActionLink("   ", "Delete", new { id = item.Id_autor }, new { @class = "fas fa-trash" })
+                    </button>
+                    @*Estilo de los Botones*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

@@ -1,0 +1,79 @@
+﻿@model Biblioteca.Models.Prestamo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-danger">¿Desea eliminar?</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="colortitulo">
+            Fecha de entrega
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_entrega)
+        </dd>
+
+        <dt class="colortitulo">
+            Fecha de devolución
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_devolucion)
+        </dd>
+
+        <dt class="colortitulo">
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt class="colortitulo">
+            Nombre del cliente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nombre)
+        </dd>
+
+        <dt class="colortitulo">
+            Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="form-actions no-color">
+
+
+                @*Botón de Eliminar*@
+                <button type="submit" style="background-color:rgba(255, 106, 0, 0.75); " title="Eliminar Préstamo" class="btn-lg col-xs-offset-1 col-xs-2 far fas fa-trash"></button>
+                <br /><br /><br />
+                <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+                    @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+                </button>
+                @*Botón de Eliminar*@
+
+            </div>
+
+            @*Div de Notificacion al eliminar*@
+            <h3 class="text-danger">
+                <span style="background-color:rgba(255, 0, 0, 0.05)">@ViewBag.ErrorEliminar</span>
+            </h3>
+            @*Div de Notificacion al eliminar*@
+        </div>
+    }
+</div>

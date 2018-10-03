@@ -1,0 +1,126 @@
+﻿@model Biblioteca.Models.Libro
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-danger">¿Eliminar Libro?</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.ISBN):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt class="colortitulo">
+            Título:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt class="colortitulo">
+            Edición:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edicion)
+        </dd>
+
+        <dt class="colortitulo">
+            Fecha de lanzamiento:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_lanzamiento)
+        </dd>
+
+        <dt class="colortitulo">
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Idioma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idioma)
+        </dd>
+
+        <dt class="colortitulo">
+            Número de páginas
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroPaginas)
+        </dd>
+
+        <dt class="colortitulo">
+            Cantidad de Libros:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt class="colortitulo">
+            Autor:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor.Nombre)
+        </dd>
+
+        <dt class="colortitulo">
+            Categoría:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Categoria1)
+        </dd>
+
+        <dt class="colortitulo">
+            Editorial:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @*Botón de Eliminar*@
+            <button type="submit" style="background-color:rgba(255, 106, 0, 0.75); " title="Eliminar Libro" class="btn-lg col-xs-offset-1 col-xs-2 far fas fa-trash"></button>
+            <br /><br /><br />
+            <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+                @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+            </button>
+            @*Botón de Eliminar*@
+
+
+
+            @*Div de Notificacion al eliminar*@
+            <h3 class="text-danger">
+                <span style="background-color:rgba(255, 0, 0, 0.05)">@ViewBag.ErrorEliminar</span>
+            </h3>
+            @*Div de Notificacion al eliminar*@
+        </div>
+    }
+</div>
+

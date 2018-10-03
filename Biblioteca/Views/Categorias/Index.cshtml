@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Biblioteca.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br /><br />
+<h2 class="colortitulo">Listado de categorias</h2>
+@*<h3 class="text-danger">@ViewBag.ErrorEliminar</h3>*@
+
+
+@*Estilo del Botón Agregar Nuevo*@
+<button class="btn-lg btn-primary" title="Agregar nueva categoria">
+    @Html.ActionLink("  ", "Create", null, new { @class = "fas fa-user-tie" })
+</button>
+@*Estilo del Botón Agregar Nuevo*@
+
+@*Animacion del Textbox*@
+<script>
+    $(document).ready(function () {
+
+        $("#b").click(function () {
+            $("#r").toggle();
+        })
+    });
+</script>
+@*Animacion del Textbox*@
+
+@*Comienzo de busqueda*@
+@using (Ajax.BeginForm("busqueda", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "busqcategoria"
+}))
+{
+
+    <br />
+    <div class="row">
+
+        <div class="col-md-12">
+            <input style="width:200px; height:35px; border-style:groove;background-color:none" type="text" id="r" name="q" placeholder="Nombre de la Categoria" />
+            <button Class="btn btn-lg btn-primary fas fa-search " type="submit" id="b" ;" name="" title="Buscar Categoria"></button>
+        </div>
+    </div>
+}
+@*Fin de busqueda*@
+
+<div id="busqcategoria">
+    @*Clases para la tabla*@
+    <table class="table jumbotron table-bordered text-center table-hover">
+        @*Clases para la tabla*@
+        <tr class="info">
+            <th class="text-center">
+                Categoria
+            </th>
+            <th class="text-center">Acciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria1)
+                </td>
+                <td>
+                    @*Estilo de los Botones*@
+                    <button class="btn-lg btn-info" style="color:white" title="Editar Categoria">
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id_categoria }, new { @class = "far fa-edit" })
+                    </button>
+                    <button class="btn-lg btn-success" title="Información de la Categoria">
+                        @Html.ActionLink("   ", "Details", new { id = item.Id_categoria }, new { @class = "fas fa-info-circle" })
+                    </button>
+                    <button class="btn-lg" style="background-color:rgba(255, 106, 0, 0.75);" title="Eliminar Categoria">
+                        @Html.ActionLink("   ", "Delete", new { id = item.Id_categoria }, new { @class = "fas fa-trash" })
+                    </button>
+                    @*Estilo de los Botones*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

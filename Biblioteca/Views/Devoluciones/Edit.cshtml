@@ -1,0 +1,83 @@
+﻿@model Biblioteca.Models.Devoluciones
+
+@{
+    ViewBag.Title = "Editar Devolución";
+}
+
+<h2 class="colortitulo">Editar Devolución</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_devoluciones)
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">ID préstamo: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-sort-numeric-down"></i></span>
+                    @Html.DropDownList("Id_prestamo", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                @*Iconos dentro del input*@
+
+                @Html.ValidationMessageFor(model => model.Id_prestamo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Fecha de devocución: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                    @Html.EditorFor(model => model.FechaDevolucion, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                @*Iconos dentro del input*@
+
+                @Html.ValidationMessageFor(model => model.FechaDevolucion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Observaciones: </label>
+
+
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                @*Iconos dentro del input*@
+                @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="far fa-save btn btn-info btn-lg col-lg-2" title="Guardar Cambios"></button>
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @*Botón Regresar*@
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+    @*Botón Regresar*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

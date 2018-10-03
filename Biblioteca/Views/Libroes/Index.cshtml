@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Biblioteca.Models.Libro>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="colortitulo">Listado de Libros</h2>
+<h3 class="text-danger">@ViewBag.ErrorEliminar</h3>
+
+@*Estilo del Botón Agregar Nuevo*@
+<button class="btn-lg btn-primary" title="Agregar nuevo libro">
+    @Html.ActionLink("  ", "Create", null, new { @class = "fas fa-book" })
+</button>
+@*Estilo del Botón Agregar Nuevo*@
+
+@*Animacion del Textbox*@
+<script>
+    $(document).ready(function () {
+
+        $("#b").click(function () {
+            $("#c").toggle();
+        })
+    });
+</script>
+@*Animacion del Textbox*@
+
+
+@*Comienzo de busqueda*@
+@using (Ajax.BeginForm("busqueda4", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "busqlibro"
+}))
+{
+    <br />
+    <div class="row">
+
+        <div class="col-md-12">
+            <input style="width:150px; height:35px; border-style:groove;background-color:none" type="text" id="c" name="b" placeholder="Nombre del Libro" />
+            <button Class="btn btn-lg btn-primary fas fa-search " type="submit" id="b" ;" name="" title="Buscar Autor"></button>
+        </div>
+    </div>
+}
+@*fin de busqueda*@
+
+<hr style="border-color: lightgray;" />
+<div id="busqlibro">
+    @*Clases para la tabla*@
+    <table class="table jumbotron table-bordered text-center table-hover">
+        @*Clases para la tabla*@
+        <tr class="info">
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th class="text-center">
+                Título
+            </th>
+            <th class="text-center">
+                Edición
+            </th>
+            @*<th class="text-center">
+                    @Html.DisplayNameFor(model => model.Fecha_lanzamiento)
+                </th>*@
+            @*<th class="text-center">
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>*@
+            @*<th class="text-center">
+                    @Html.DisplayNameFor(model => model.Idioma)
+                </th>*@
+            <th class="text-center">
+                Número de páginas
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th class="text-center">
+                Autor
+            </th>
+            <th class="text-center">
+                Categoría
+            </th>
+            @*<th class="text-center">
+                    @Html.DisplayNameFor(model => model.Editorial.Nombre)
+                </th>*@
+            <th class="text-center">
+                Acciones
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edicion)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Fecha_lanzamiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Idioma)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroPaginas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Categoria1)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Editorial.Nombre)
+                    </td>*@
+                <td>
+                    @*Estilo de los Botones*@
+                    <button class="btn-lg btn-info" style="color:white" title="Editar Autor">
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id_libro }, new { @class = "far fa-edit" })
+                    </button>
+                    <button class="btn-lg btn-success" title="Información del Autor">
+                        @Html.ActionLink("   ", "Details", new { id = item.Id_libro }, new { @class = "fas fa-info-circle" })
+                    </button>
+                    <button class="btn-lg" style="background-color:rgba(255, 106, 0, 0.75);" title="Eliminar Autor">
+                        @Html.ActionLink("   ", "Delete", new { id = item.Id_libro }, new { @class = "fas fa-trash" })
+                    </button>
+                    @*Estilo de los Botones*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+</div>
+

@@ -1,0 +1,257 @@
+﻿@model Biblioteca.Models.Prestamo
+
+@{
+    ViewBag.Title = "Nuevo Prestamo";
+}
+
+<h2 class="colortitulo">Nuevo Prestamo</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">Fecha de entrega: </label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.EditorFor(model => model.Fecha_entrega, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+            @*Iconos dentro del input*@
+            @Html.ValidationMessageFor(model => model.Fecha_entrega, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">Fecha de devolucion: </label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.EditorFor(model => model.Fecha_devolucion, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+            @*Iconos dentro del input*@
+
+            @Html.ValidationMessageFor(model => model.Fecha_devolucion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">Estado: </label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", @placeholder = "Campo Opcional" } })
+
+            </div>
+            @*Iconos dentro del input*@
+
+
+            @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <label class="control-label col-md-2 colortitulo">Usuario:</label>
+    <div class="form-group">
+
+        <div class="col-md-9">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.DropDownList("Id_usuario", null, htmlAttributes: new { @class = "form-control" })
+
+            </div>
+            @*Iconos dentro del input*@
+
+            @Html.ValidationMessageFor(model => model.Id_usuario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2 colortitulo">Cliente: </label>
+        <div class="col-md-10">
+            @*Iconos dentro del input*@
+            <div class="input-group">
+                <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                @Html.DropDownList("Id_cliente", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            @*Iconos dentro del input*@
+            @Html.ValidationMessageFor(model => model.Id_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!--INICIO DETALLE MAESTRO-->
+
+    <div class="row">
+        <h3 class="text-center">Detalles </h3>
+        <div class="col-md-2">
+            <input type="number" id="cant" class="form-control" placeholder="Cantidad" />     <!-- Input de cantidad -->
+
+        </div>
+
+
+        <div class="col-lg-10 col-xs-10">
+            <div class="form-inline col-lg-10 col-xs-10">
+                <input type="text" id="NombreLibro" style="width:73%" placeholder="Seleccione un Libro" class="form-control" disabled /> <!-- Input de nombre del producto -->
+                <button type="button" class="btn btn-default glyphicon glyphicon-search" data-toggle="modal" data-target="#exampleModal"></button> <!-- Boton para activar el modal -->
+                <button type="button" id="addDetalle" class="btn btn-success glyphicon glyphicon-plus"></button> <!-- Boton para agregar el detalle con la cantidad a la vista -->
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Listado de Libros</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @{
+                        IEnumerable<Biblioteca.Models.Libro> libros = new List<Biblioteca.Models.Libro>();
+                        libros = ViewBag.ListadoLibros;
+                    }
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Titulo
+                            </th>
+                            <th>
+                                Categoría
+                            </th>
+                            <th>
+                                Autor
+                            </th>
+                            <th>
+                                Editorial
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in libros)
+                        {
+
+                            //Se despliega la lista de productos
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Titulo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Categoria.Categoria1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Autor.Nombre) @Html.DisplayFor(modelItem => item.Autor.Apellido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Editorial.Nombre)
+                                </td>
+                                <td>
+
+                                    <button type="button"
+                                            class="btn btn-warning"
+                                            id="addProduct"
+                                            onclick="addLibroDetail(@item.Id_libro, '@item.Titulo')"
+                                            data-dismiss="modal">
+                                        Agregar
+                                    </button>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin del  Modal -->
+    <hr />
+
+    <div id="detalles">
+
+        @{
+            Html.RenderPartial("DetallesPrestamo");
+        }
+
+    </div>
+
+    <!--Fin detalle maestro-->
+
+
+
+
+    <div class="form-group">
+        <div class="form-group ">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar Prestamo" class="btn btn-success " />
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+<script>
+    $(document).ready(iniciar);
+
+    var dataDetail = { Id_prestamo: 0, cantidad: "", Titulo: "" }
+
+    function iniciar() {
+        $("#addDetalle").click(addDetail); //Se llama a la funcion de agregar detalle
+    }
+
+    function addDetail() {
+        dataDetail.cantidad = $("#cant").val(); //se asigna la cantidad al objeto que se ha creado
+
+        //realizar la peticion ajax
+
+        $.ajax({
+            method: "Post",
+            url: "/Prestamoes/DetallesPrestamo/", //Controlador/Metodo
+            data: {
+                IdLibro: dataDetail.Id_prestamo, //Parametro que recibe el controlador
+                cantidad: dataDetail.cantidad, //Parametro que recibe el controlador
+                //Titulo: dataDetail.Titulo,//Parametro que recibe el controlador
+            },
+            success: function (data) {
+                $("#detalles").html(data); //Se carga la vista parcial en el div
+            },
+            error: function () { }
+        });
+    }
+    function addLibroDetail(Id_libro, titulo) { // relacionado con el modal
+        //asignando los valores al producto
+        dataDetail.Id_prestamo = Id_libro;  //usando el mismo objeto que se declara al inicio
+        //dataDetail.cantidad = cantidad; //usando el mismo objeto que se declara al inicio
+        dataDetail.Titulo = titulo; //usando el mismo objeto que se declara al inicio
+
+        $("#NombreLibro").val(titulo); //agregando el nombre al input del producto
+    }
+</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

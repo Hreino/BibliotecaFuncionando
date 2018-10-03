@@ -1,0 +1,28 @@
+﻿@model Biblioteca.Models.Categoria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="colortitulo">Detalles de la Categoria</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="colortitulo">
+            Nombre de la Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*Botón Regresar*@
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink(" ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+    @*Botón Regresar*@

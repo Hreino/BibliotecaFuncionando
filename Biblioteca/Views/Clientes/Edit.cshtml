@@ -1,0 +1,98 @@
+﻿@model Biblioteca.Models.Cliente
+
+@{
+    ViewBag.Title = "Editando Cliente";
+}
+
+<h2 class="colortitulo">Editar Cliente</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Cliente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_cliente)
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Nombres: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del input*@
+
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Apellidos: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del input*@
+
+                @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Dirección: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-map-marker-alt"></i></span>
+                    @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del input*@
+                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Teléfono: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-mobile-alt"></i></span>
+                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del input*@
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="far fa-save btn btn-info btn-lg col-lg-2" title="Guardar Cambios"></button>
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @*Botón Regresar*@
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+    @*Botón Regresar*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

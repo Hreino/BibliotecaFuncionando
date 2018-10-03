@@ -1,0 +1,45 @@
+﻿@model Biblioteca.Models.Devoluciones
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2 class="colortitulo">Detalles de devolución</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.FechaDevolucion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDevolucion)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt class="colortitulo">
+           Cliente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prestamo.Cliente.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*Botón Regresar*@
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink(" ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+    @*Botón Regresar*@
+</p>
+

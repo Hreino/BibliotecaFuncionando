@@ -1,0 +1,121 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*SIDEBAR START*/
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif
+}
+
+#sidebar {
+    position: fixed;
+    width: 180px;
+    height: 100%;
+    background: #0655aa;
+    left: -200px;
+    transition: all 500ms linear;
+    border: solid 1.5px #000000;
+}
+
+    #sidebar.active {
+        left: 0px;
+    }
+
+    #sidebar ul li {
+        color: rgba(230,230,230,0.9);
+        list-style: none;
+        padding: 5px 5px;
+        padding-left: 10px;
+        border-bottom: #ffffff;
+        border-bottom: solid 1px #b2b2b2;
+    }
+
+    #sidebar .toggle-btn {
+        position: absolute;
+        left: 230px;
+        top: 5px;
+    }
+
+        #sidebar .toggle-btn span {
+            display: block;
+            width: 30px;
+            height: 5px;
+            margin: 3px 0px;
+        }
+
+ul li #nombreaplicacion {
+    margin-top: 4px;
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+
+a:hover {
+    color: white;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+a:link {
+    color: white;
+    font-size: 20px;
+}
+
+a:visited {
+    color: white;
+}
+
+
+/*SIDEBAR END*/
+
+/*TITLE COLOR START*/
+.colortitulo {
+    color: #004073;
+}
+/*TITLE COLOR END*/
+
+/*BODY COLOR START*/
+body {
+    /*background-color:#dcd9d9;*/
+}
+/*BODY COLOR END*/
+
+/*IMG REDIMENSIONADAS START*/
+.imagenesPeque {
+    height: 300px;
+    width: 200px;
+    border-radius: 10px;
+    padding-bottom: 5px;
+}
+/*IMG REDIMENSIONADAS END*/
+
+/*ICONO START*/
+.imgico {
+    height: 70px;
+    width: 70px;
+}
+/*ICONO END*/

@@ -1,0 +1,109 @@
+﻿@model Biblioteca.Models.Libro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="colortitulo">Detalles del Libro</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.ISBN):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt class="colortitulo">
+            Título:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Edicion):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edicion)
+        </dd>
+
+        <dt class="colortitulo">
+            Fecha de Lanzamiento:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_lanzamiento)
+        </dd>
+
+        <dt class="colortitulo">
+            Descripción:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Idioma):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idioma)
+        </dd>
+
+        <dt class="colortitulo">
+            Número de páginas:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroPaginas)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Cantidad):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt class="colortitulo">
+            Autor:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor.Nombre)
+        </dd>
+
+        <dt class="colortitulo">
+            Categoría
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Categoria1)
+        </dd>
+
+        <dt class="colortitulo">
+            Editorial:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*Botón Regresar*@
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink(" ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+    @*Botón Regresar*@
+</p>

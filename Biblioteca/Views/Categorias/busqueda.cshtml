@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Biblioteca.Models.Categoria>
+<div id="busqcategoria">
+    <table class="table jumbotron table-bordered text-center table-hover">
+        <tr class="info ">
+            <th class="text-center">
+                Categoria
+            </th>
+            <th class="text-center">Acciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria1)
+                </td>
+                <td>
+                    @*Estilo de los Botones*@
+                    <button class="btn-lg btn-info" style="color:white" title="Editar Categoria">
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id_categoria }, new { @class = "far fa-edit" })
+                    </button>
+                    <button class="btn-lg btn-success" title="Información de la categoria">
+                        @Html.ActionLink("   ", "Details", new { id = item.Id_categoria }, new { @class = "fas fa-info-circle" })
+                    </button>
+                    <button class="btn-lg" style="background-color:rgba(255, 106, 0, 0.75);" title="Eliminar Categoria">
+                        @Html.ActionLink("   ", "Delete", new { id = item.Id_categoria }, new { @class = "fas fa-trash" })
+                    </button>
+                    @*Estilo de los Botones*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

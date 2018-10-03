@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Biblioteca</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href="~/Content/all.css" rel="stylesheet" />
+    <script src="~/Scripts/Nav.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+
+
+
+    <!--NAVBAR-->
+    <div id="sidebar" class="navbar-fixed-top">
+
+        <div class="toggle-btn text-center" onclick="toggleSidebar()">
+            <span>
+                <img src="~/img/ICONO.png" class="imgico" />
+
+            </span>
+
+        </div>
+
+        <div style="width:180px; height:100%;">
+            <ul>
+                <li id="nombreaplicacion" class="text-center"><h3>Registro Bibliotecario </h3></li>
+                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+
+                <li>@Html.ActionLink("Listado de Autores", "Index", "Autors")</li>
+                <li>@Html.ActionLink("Categorías de Libros", "Index", "Categorias")</li>
+                <li>@Html.ActionLink("Libros en Existencia", "Index", "Libroes")</li>
+                <li>@Html.ActionLink("Listado de Clientes", "Index", "Clientes")</li>
+                <li>@Html.ActionLink("Listado de Devoluciones", "Index", "Devoluciones")</li>
+                <li>@Html.ActionLink("Editoriales", "Index", "Editorials")</li>
+                <li>@Html.ActionLink("Listado de Préstamos", "Index", "Prestamoes")</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--NAVBAR-->
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr style="border-color: lightgray;" />
+        <footer class="colortitulo text-right">
+            <p>@DateTime.Now.Year - Aplicación bibliotecaria &reg;</p>
+        </footer>
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

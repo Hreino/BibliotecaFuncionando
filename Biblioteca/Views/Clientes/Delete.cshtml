@@ -1,0 +1,68 @@
+﻿@model Biblioteca.Models.Cliente
+
+@{
+    ViewBag.Title = "Eliminar Cliente";
+}
+
+<h2 class="text-danger">¿Desea eliminar?</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt class="colortitulo">
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            @*Botón de Eliminar*@
+            <button type="submit" style="background-color:rgba(255, 106, 0, 0.75); " title="Eliminar Cliente" class="btn-lg col-xs-offset-1 col-xs-2 far fas fa-trash"></button>
+            <br /><br /><br />
+            <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+                @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+            </button>
+            @*Botón de Eliminar*@
+            @*Div de Notificacion al eliminar*@
+            <h3 class="text-danger">
+                <span style="background-color:rgba(255, 0, 0, 0.05)">@ViewBag.ErrorEliminar</span>
+            </h3>
+            @*Div de Notificacion al eliminar*@
+        </div>
+    }
+</div>
+

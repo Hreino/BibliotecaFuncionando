@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Biblioteca.Models.Editorial>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="colortitulo">Listado de Editoriales</h2>
+<h3 class="text-danger">@ViewBag.ErrorEliminar</h3>
+
+@*Estilo del Botón Agregar Nuevo*@
+<button class="btn-lg btn-primary" title="Agregar Editorial">
+    @Html.ActionLink("  ", "Create", null, new { @class = "fas fa fa-building" })
+</button>
+
+@*Estilo del Botón Agregar Nuevo*@
+
+@*Animacion del Textbox*@
+<script>
+    $(document).ready(function () {
+
+        $("#a").click(function () {
+            $("#b").toggle();
+        })
+    });
+</script>
+@*Animacion del Textbox*@
+
+
+@*Comienzo de busqueda*@
+@using (Ajax.BeginForm("busqueda3", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "busqeditorial"
+}))
+{
+    <input Style="background-color:white" type="text" id="b" name="s" />
+
+    <input Class="btn btn-primary" type="submit" id="a" name="" value="Buscar" />
+}
+@*fin de busqueda*@
+
+
+<div id="busqeditorial">
+    @*Clases para la tabla*@
+    <table class="table jumbotron table-bordered text-center table-hover">
+        @*Clases para la tabla*@
+        <tr class="info">
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Pais)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th class="text-center">Acciones</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @*Estilo de los Botones*@
+                    <button class="btn-lg btn-info" style="color:white" title="Editar Autor">
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id_editorial }, new { @class = "far fa-edit" })
+                    </button>
+                    <button class="btn-lg btn-success" title="Información del Autor">
+                        @Html.ActionLink("   ", "Details", new { id = item.Id_editorial }, new { @class = "fas fa-info-circle" })
+                    </button>
+                    <button class="btn-lg" style="background-color:rgba(255, 106, 0, 0.75);" title="Eliminar Autor">
+                        @Html.ActionLink("   ", "Delete", new { id = item.Id_editorial }, new { @class = "fas fa-trash" })
+                    </button>
+                    @*Estilo de los Botones*@
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

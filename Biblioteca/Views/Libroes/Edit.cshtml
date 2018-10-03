@@ -1,0 +1,197 @@
+﻿@model Biblioteca.Models.Libro
+@{
+    ViewBag.Title = "Editando";
+}
+
+<h2 class="colortitulo">Información del Libro</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_libro)
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">ISBN: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Nombre del Libro: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+                @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Edición: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.Edicion, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.Edicion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Fecha de lanzamiento: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-calendar-alt"></i></span>
+                    @Html.EditorFor(model => model.Fecha_lanzamiento, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.Fecha_lanzamiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Descripción: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-file-signature"></i></span>
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Idioma: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-language"></i></span>
+                    @Html.EditorFor(model => model.Idioma, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.Idioma, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Número de páginas: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-list-ol"></i></span>
+                    @Html.EditorFor(model => model.NumeroPaginas, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.NumeroPaginas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Cantidad de Libros: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-sort-numeric-up"></i></span>
+                    @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Categoría: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-project-diagram"></i></span>
+                    @Html.DropDownList("Id_categoria", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                @*Iconos dentro del Input*@
+
+                @Html.ValidationMessageFor(model => model.Id_categoria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Autor: </label>
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-user-tie"></i></span>
+                    @Html.DropDownList("Id_autor", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                @*Iconos dentro del Input*@
+
+
+                @Html.ValidationMessageFor(model => model.Id_autor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2 colortitulo">Editorial: </label>
+
+            <div class="col-md-10">
+                @*Iconos dentro del Input*@
+                <div class="input-group">
+                    <span class="input-group-addon"> <i class="fas fa-building"></i></span>
+                    @Html.DropDownList("Id_editorial", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                @*Iconos dentro del Input*@
+                @Html.ValidationMessageFor(model => model.Id_editorial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="far fa-save btn btn-info btn-lg col-lg-2" title="Guardar Cambios"></button>
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @*Botón Regresar*@
+    <button class="btn btn-lg btn-primary" title="Regresar al Listado">
+        @Html.ActionLink("   ", "Index", null, new { @class = "fas fa-chevron-circle-left" })
+    </button>
+    @*Botón Regresar*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
